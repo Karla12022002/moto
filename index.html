@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moto</title>
+  <script src="aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    
+    <!-- Suelo -->
+    <a-sky color="#87CEEB"></a-sky>
+    <a-plane rotation="-90 0 0" height="200" width="200" repeat="100 100" color="#D8C793"></a-plane>
+
+    <!-- Moto -->
+    <a-entity id="moto" position="0 0 0" rotation="0 0 0">
+      <a-box position="0 1.5 0" width="1" height="1" depth="3" color="green"></a-box>
+      <!-- Rueda delantera -->
+      <a-cylinder position="0 0.5 1.3" radius="0.5" height="0.3" color="black" rotation="0 0 90"></a-cylinder>
+      <!-- Rueda trasera -->
+      <a-cylinder position="0 0.5 -1.3" radius="0.5" height="0.3" rotation="0 0 90" color="black"></a-cylinder>
+      <!-- Manubrio -->
+      <a-box position="0 2.5 1.5" width="1.5" height="0.2" depth="0.1" color="black"></a-box>
+      <a-box position="0 2.2 1.5" width="0.5" height="0.2" depth="0.1" color="black" rotation="0 0 90"></a-box>
+      <!-- Asiento -->
+      <a-box position="0 2 -0.3" width="0.8" height="0.5" depth="2" color="gray"></a-box>   
+    </a-entity>
+
+    <!-- Rampas -->
+    <a-entity id="rampas" position="0 0 0">
+      <a-torus position="0 0 10" radius="4" radius-tubular="1" rotation="0 90 0" color="#389FF9"></a-torus>
+      <a-torus position="0 0 26" radius="4" radius-tubular="1" rotation="0 90 0" color="#389FF9"></a-torus>
+      <a-torus position="0 0 42" radius="4" radius-tubular="1" rotation="0 90 0" color="#389FF9"></a-torus>
+    </a-entity>
+    
+  </a-scene>
+
+  <script>
+    function animarMoto(coordenadas) {
+      var moto = document.getElementById('moto');//resive la moto entera 
+      var duracionAnimacion = 2000; // Duración de la animación en milisegundos
+
+      // Función para animar la moto a una posición y rotación específica
+      function animarSiguientePosicion(index) {
+        var siguientePosicion = coordenadas[index % coordenadas.length]; 
+        moto.setAttribute('animation', {
+          property: 'position',
+          to: siguientePosicion.position,
+          dur: duracionAnimacion
+        });
+        moto.setAttribute('animation__rotation', {
+          property: 'rotation',
+          to: siguientePosicion.rotation,
+          dur: duracionAnimacion
+        });
+        setTimeout(function () {
+          animarSiguientePosicion(index + 1); // Animar la siguiente posición después de la duración
+        }, duracionAnimacion); // Esperar hasta que la animación actual haya terminado
+      }
+
+      // Iniciar la animación desde la primera posición
+      animarSiguientePosicion(0);
+    }
+
+    // Coordenadas para la animación de la moto
+    var coordenadas = [
+      /*Primera rampa*/
+      { position: "0 0 0", rotation: "0 0 0" },
+      { position: "0 0 2.1", rotation: "0 0 0" },
+      { position: "0 1.2 3.5", rotation: "-45 0 0" },
+      { position: "0 2 4.5", rotation: "-70 0 0" },
+      { position: "0 5.3 7.5", rotation: "-31 0 0" },
+      { position: "0 5.8 10.5", rotation: "0 0 0" },
+      { position: "0 4.8 13.5", rotation: "40 0 0" },
+      { position: "0 4 14.5", rotation: "50 0 0" },
+      { position: "0 1.6 15.5", rotation: "70 0 0" },
+      { position: "0 0 18", rotation: "0 0 0" },
+      /*segunda rampa*/
+      { position: "0 1.2 19.4", rotation: "-45 0 0" },
+      { position: "0 2 20.4", rotation: "-70 0 0" },
+      { position: "0 5.3 23.4", rotation: "-31 0 0" },
+      { position: "0 5.8 26.4", rotation: "0 0 0" },
+      { position: "0 4.8 29.4", rotation: "40 0 0" },
+      { position: "0 4 30.4", rotation: "50 0 0" },
+      { position: "0 1.6 31.4", rotation: "70 0 0" },
+      { position: "0 0 34", rotation: "0 0 0" },
+      /*tercera rampa*/
+      { position: "0 1.2 35.4", rotation: "-45 0 0" },
+      { position: "0 2 36.4", rotation: "-70 0 0" },
+      { position: "0 5.3 39.4", rotation: "-31 0 0" },
+      { position: "0 5.8 42.4", rotation: "0 0 0" },
+      { position: "0 4.8 45.4", rotation: "40 0 0" },
+      { position: "0 4 46.4", rotation: "50 0 0" },
+      { position: "0 1.6 47.4", rotation: "70 0 0" },
+      { position: "0 0 50", rotation: "0 0 0" },
+      /*demas del recorrido*/
+      { position: "0 0 70", rotation: "0 0 0" },
+      { position: "0 0 70", rotation: "0 90 0" },
+      { position: "30 0 70", rotation: "0 90 0" },
+      { position: "30 0 0", rotation: "0 180 0" },
+      { position: "30 0 0", rotation: "0 280 0" },
+      { position: "0 0 0", rotation: "0 280 0" },
+      { position: "0 0 0", rotation: "0 0 0" }
+    ];
+
+    // espera a que se cargue la pagina 
+    document.addEventListener("DOMContentLoaded", function () {
+      animarMoto(coordenadas);
+    });
+  </script>
+</body>
+</html>
