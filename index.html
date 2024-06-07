@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <title>Moto</title>
   <script src="aframe.min.js"></script>
+  <style>
+    #speedControl {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+    }
+  </style>
 </head>
 <body>
   <a-scene>
@@ -12,45 +20,135 @@
     <a-sky color="#87CEEB"></a-sky>
     <a-plane rotation="-90 0 0" height="200" width="200" repeat="100 100" color="#D8C793"></a-plane>
 
-    <!-- Moto -->
-    <a-entity id="moto" position="0 0 0" rotation="0 0 0">
-      <a-box position="0 1.5 0" width="1" height="1" depth="3" color="green"></a-box>
+    <!-- Rampas -->
+    <a-entity id="rampas" position="0 0 0">
+      <a-torus position="0 0 10" radius="4" radius-tubular="1" rotation="0 90 0" material="src: url(recursos/rampa.jpg);"></a-torus>
+      <a-torus position="0 0 26" radius="4" radius-tubular="1" rotation="0 90 0" material="src: url(recursos/rampa.jpg);"></a-torus>
+      <a-torus position="0 0 42" radius="4" radius-tubular="1" rotation="0 90 0" material="src: url(recursos/rampa.jpg);"></a-torus>
+    
+      <a-torus position="30 0 10" radius="4" radius-tubular="1" rotation="0 90 0" material="src: url(recursos/rampa.jpg);"></a-torus>
+      <a-torus position="30 0 26" radius="4" radius-tubular="1" rotation="0 90 0" material="src: url(recursos/rampa.jpg);"></a-torus>
+      <a-torus position="30 0 42" radius="4" radius-tubular="1" rotation="0 90 0" material="src: url(recursos/rampa.jpg);"></a-torus>
+    </a-entity>
+
+    <a-obj-model src="recursos/Skate_Ramp_Fun_Box_06_.obj" position="10 0 72.5" scale="0.02 0.02 0.02" rotation ="0 -65 0" mtl="recursos/Skate_Ramp_Fun_Box_06_.mtl"></a-obj-model>
+    <a-obj-model src="recursos/Skate_Ramp_Fun_Box_07_.obj" position="7 0 -18.5" scale="0.02 0.02 0.02" rotation ="0 120 0" mtl="recursos/Skate_Ramp_Fun_Box_07_.mtl" ></a-obj-model>
+    <a-obj-model src="recursos/Skate_Ramp_Fun_Box_07_.obj" position="20 0 -18.5" scale="0.02 0.02 0.02" rotation ="0 -65 0" mtl="recursos/Skate_Ramp_Fun_Box_07_.mtl" ></a-obj-model>
+     <!-- tronco -->
+    <a-obj-model src="recursos/Old_snag.obj" position="12 0 -18.5" scale="6 6 6" rotation ="0 -65 0" material="src: url(recursos/tronco.png);" ></a-obj-model>
+
+    <!-- Conos -->
+    <a-obj-model src="recursos/absperrhut.obj" position="3 0 0" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="-3 0 0" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="3 0 17" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="-3 0 17" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="3 0 34" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="-3 0 34" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="3 0 51" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="-3 0 51" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="33 0 0" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="27 0 0" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="33 0 17" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="27 0 17" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="33 0 34" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="27 0 34" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="33 0 51" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <a-obj-model src="recursos/absperrhut.obj" position="27 0 51" scale="3 3 3" rotation ="0 -65 0" color="#F85303"></a-obj-model>
+    <!-- moto -->
+    <a-entity id="moto" position="0 0 -13" rotation="0 0 0" animation-mixer="clip: *">
+
+      <a-box position="0 1.5 0" width="1" height="1" depth="3" material="src: url(recursos/tanktex.jpg);"></a-box>
       <!-- Rueda delantera -->
-      <a-cylinder position="0 0.5 1.3" radius="0.5" height="0.3" color="black" rotation="0 0 90"></a-cylinder>
+      <a-cylinder position="0 0.5 1.3" radius="0.5" height="0.3" rotation="0 0 90" material="src: url(recursos/llanta.png);">
+        <a-animation attribute="rotation" from="0 0 0" to="0 0 360" dur="1000" repeat="indefinite" easing="linear"></a-animation>
+      </a-cylinder>
       <!-- Rueda trasera -->
-      <a-cylinder position="0 0.5 -1.3" radius="0.5" height="0.3" rotation="0 0 90" color="black"></a-cylinder>
+      <a-cylinder position="0 0.5 -1.3" radius="0.5" height="0.3" rotation="0 0 90" material="src: url(recursos/llanta.png);">
+        <a-animation attribute="rotation" from="0 0 0" to="0 0 360" dur="1000" repeat="indefinite" easing="linear"></a-animation>
+      </a-cylinder>
       <!-- Manubrio -->
       <a-box position="0 2.5 1.5" width="1.5" height="0.2" depth="0.1" color="black"></a-box>
       <a-box position="0 2.2 1.5" width="0.5" height="0.2" depth="0.1" color="black" rotation="0 0 90"></a-box>
+      <!-- Cámara en la moto -->
+      <a-camera id="cam-moto" position="0 2 -3" rotation="0 0 0"></a-camera>
       <!-- Asiento -->
       <a-box position="0 2 -0.3" width="0.8" height="0.5" depth="2" color="gray"></a-box>   
     </a-entity>
 
-    <!-- Rampas -->
-    <a-entity id="rampas" position="0 0 0">
-      <a-torus position="0 0 10" radius="4" radius-tubular="1" rotation="0 90 0" color="#389FF9"></a-torus>
-      <a-torus position="0 0 26" radius="4" radius-tubular="1" rotation="0 90 0" color="#389FF9"></a-torus>
-      <a-torus position="0 0 42" radius="4" radius-tubular="1" rotation="0 90 0" color="#389FF9"></a-torus>
-    </a-entity>
+    <!-- camino -->
+    <a-box position="0 0.01 60.5" width="6" height="0.01" depth="22" color="gray"></a-box>
+    <a-box position="15 0.01 70.5" width="6" height="0.01" depth="36" color="gray" rotation="0 90 0"></a-box>    
+    <a-box position="30 0.01 60.5" width="6" height="0.01" depth="22" color="gray"></a-box>
+    <a-box position="0 0.01 -8.5" width="6" height="0.01" depth="22" color="gray"></a-box>
+    <a-box position="15 0.01 -18.5" width="6" height="0.01" depth="36" color="gray" rotation="0 90 0"></a-box>    
+    <a-box position="30 0.01 -8.5" width="6" height="0.01" depth="22" color="gray"></a-box>
     
+    <!-- camaras -->
+    <a-camera id="camera1" position="-35 1 26" look-at="#target"></a-camera>
+    <a-camera id="camera2" position="65 1 26" look-at="#target"></a-camera>
+    <a-camera id="camera3" position="15 1 95" look-at="#target"></a-camera>
+    <a-box id="target" position="15 2 10" visible="false"></a-box>
+    
+    <!-- Inicializar la camara en la moto -->
+    <a-camera id="mainCamera" position="0 1.6 0"></a-camera>
+  
   </a-scene>
 
+  <!--  control de velocidad -->
+  <div id="speedControl">
+    <label for="speedSlider">Velocidad de la moto:</label>
+    <input type="range" id="speedSlider" min="500" max="5000" value="1000">
+
+  </div>
+  <audio id="audio" src="recursos/moto.mp3"></audio>
+
   <script>
+
+const audio = document.getElementById('audio');
+        audio.loop = true; 
+        audio.play();
+
+
+
     function animarMoto(coordenadas) {
-      var moto = document.getElementById('moto');//resive la moto entera 
-      var duracionAnimacion = 2000; // Duración de la animación en milisegundos
+      var moto = document.getElementById('moto');
+      
+      var speedSlider = document.getElementById('speedSlider');
+      var duracionAnimacion = 5500 - parseInt(speedSlider.value); // Duración inicial de la animación
+
+
+      function actualizarVelocidad() {
+      var duracion = 5500 - parseInt(speedSlider.value);
+      var animationMixer = moto.getAttribute('animation-mixer');
+      if (animationMixer) {
+        animationMixer.timeScale = 5000 / duracion; 
+      }
+    }
+
+   
+    actualizarVelocidad();
+
+
+    speedSlider.addEventListener('input', actualizarVelocidad);
+
+speedSlider.addEventListener('input', function() {
+  duracionAnimacion = 5500 - parseInt(speedSlider.value); 
+});
+
 
       // Función para animar la moto a una posición y rotación específica
       function animarSiguientePosicion(index) {
-        var siguientePosicion = coordenadas[index % coordenadas.length]; 
+        var siguientePosicion = coordenadas[index % coordenadas.length];
         moto.setAttribute('animation', {
           property: 'position',
           to: siguientePosicion.position,
+          easing: 'linear', 
           dur: duracionAnimacion
         });
         moto.setAttribute('animation__rotation', {
           property: 'rotation',
           to: siguientePosicion.rotation,
+          easing: 'linear',
           dur: duracionAnimacion
         });
         setTimeout(function () {
@@ -58,16 +156,15 @@
         }, duracionAnimacion); // Esperar hasta que la animación actual haya terminado
       }
 
-      // Iniciar la animación desde la primera posición
+      // 
       animarSiguientePosicion(0);
     }
 
     // Coordenadas para la animación de la moto
     var coordenadas = [
-      /*Primera rampa*/
-      { position: "0 0 0", rotation: "0 0 0" },
-      { position: "0 0 2.1", rotation: "0 0 0" },
-      { position: "0 1.2 3.5", rotation: "-45 0 0" },
+      // Primera rampa
+      { position: "0 0 -13", rotation: "0 0 0" },
+      { position: "0 0 2", rotation: "0 0 0" },
       { position: "0 2 4.5", rotation: "-70 0 0" },
       { position: "0 5.3 7.5", rotation: "-31 0 0" },
       { position: "0 5.8 10.5", rotation: "0 0 0" },
@@ -75,7 +172,7 @@
       { position: "0 4 14.5", rotation: "50 0 0" },
       { position: "0 1.6 15.5", rotation: "70 0 0" },
       { position: "0 0 18", rotation: "0 0 0" },
-      /*segunda rampa*/
+      // Segunda rampa
       { position: "0 1.2 19.4", rotation: "-45 0 0" },
       { position: "0 2 20.4", rotation: "-70 0 0" },
       { position: "0 5.3 23.4", rotation: "-31 0 0" },
@@ -84,7 +181,7 @@
       { position: "0 4 30.4", rotation: "50 0 0" },
       { position: "0 1.6 31.4", rotation: "70 0 0" },
       { position: "0 0 34", rotation: "0 0 0" },
-      /*tercera rampa*/
+      // Tercera rampa
       { position: "0 1.2 35.4", rotation: "-45 0 0" },
       { position: "0 2 36.4", rotation: "-70 0 0" },
       { position: "0 5.3 39.4", rotation: "-31 0 0" },
@@ -93,17 +190,94 @@
       { position: "0 4 46.4", rotation: "50 0 0" },
       { position: "0 1.6 47.4", rotation: "70 0 0" },
       { position: "0 0 50", rotation: "0 0 0" },
-      /*demas del recorrido*/
+      // Demás del recorrido
       { position: "0 0 70", rotation: "0 0 0" },
       { position: "0 0 70", rotation: "0 90 0" },
-      { position: "30 0 70", rotation: "0 90 0" },
+      { position:"1.7 0 70", rotation:"0 90 0"},
+      // Rampa
+      { position:"5 0.8 70", rotation:"-25 90 0"},
+      { position:"8 1.9 70", rotation:"0 90 0"},
+      { position:"9 1.9 70", rotation:"0 90 0"},
+      { position:"12 1.5 70", rotation:"15 90 0"},
+      { position:"15 0.6 70", rotation:"15 90 0"},
+      { position:"18 0 70", rotation:"3 90 0"},
+      { position:"21 0 70", rotation:"0 90 0"},
+      { position:"30 0 70", rotation:"0 180 0"},
+      { position:"30 0 70", rotation:"0 180 0"},
+      // Cuarta rampa
+      { position: "30 0 50", rotation: "0 180 0" },
+      { position: "30 1.6 47.4", rotation: "-70 180 0" },
+      { position: "30 4 46.4", rotation: "-50 180 0" },
+      { position: "30 4.8 45.4", rotation: "-40 180 0" },
+      { position: "30 5.8 42.4", rotation: "0 180 0" },
+      { position: "30 5.3 39.4", rotation: "31 180 0" },
+      { position: "30 2 36.4", rotation: "70 180 0" },
+      { position: "30 1.2 35.4", rotation: "45 180 0" },
+      // Quinta rampa
+      { position: "30 0 34", rotation: "0 180 0" },
+      { position: "30 1.6 31.4", rotation: "-70 180 0" },
+      { position: "30 4 30.4", rotation: "-50 180 0" },
+      { position: "30 4.8 29.4", rotation: "-40 180 0" },
+      { position: "30 5.8 26.4", rotation: "0 180 0" },
+      { position: "30 5.3 23.4", rotation: "31 180 0" },
+      { position: "30 2 20.4", rotation: "70 180 0" },
+      { position: "30 1.2 19.4", rotation: "45 180 0" },
+      // Sexta rampa 
+      { position: "30 0 18", rotation: "0 180 0" },
+      { position: "30 1.6 15.5", rotation: "-70 180 0" },
+      { position: "30 4 14.5", rotation: "-50 180 0" },
+      { position: "30 4.8 13.5", rotation: "-40 180 0" },
+      { position: "30 5.8 10.5", rotation: "0 180 0" },
+      { position: "30 5.3 7.5", rotation: "31 180 0" },
+      { position: "30 2 4.5", rotation: "70 180 0" },
+      { position: "30 1.2 3.5", rotation: "45 180 0" },
+      { position: "30 0 2.1", rotation: "0 180 0" },
+      // Demás recorrido
       { position: "30 0 0", rotation: "0 180 0" },
-      { position: "30 0 0", rotation: "0 280 0" },
-      { position: "0 0 0", rotation: "0 280 0" },
-      { position: "0 0 0", rotation: "0 0 0" }
+      { position:"30 0 -18", rotation:"0 180 0"},
+      { position:"30 0 -18", rotation:"0 -90 0"},
+      { position:"25 0 -18", rotation:"0 -90 0"},
+      { position:"22 0.4 -18", rotation:"-15 -90 0"},
+      { position:"19 1.3 -18", rotation:"-15 -90 0"},
+      { position:"16 2.2 -18", rotation:"-15 -90 0"},
+      { position:"13 2.2 -18", rotation:"0 -90 0"},
+      { position:"10 1.9 -18", rotation:"15 -90 0"},
+      { position:"7 1 -18", rotation:"15 -90 0"},
+      { position:"4 0.2 -18", rotation:"10 -90 0"},
+      { position:"1 0 -18", rotation:"0 -90 0"},
+      { position:"0 0 -18", rotation:"0 -90 0"},
+      { position:"0 0 -18", rotation:"0 0 0"}
     ];
 
-    // espera a que se cargue la pagina 
+    // Inicializar la camara principal en la moto
+    document.getElementById('mainCamera').setAttribute('camera', 'active', false);
+    document.getElementById('cam-moto').setAttribute('camera', 'active', true);
+
+    // cambiar la camara activa
+    function cambiarCamara(camId) {
+      document.querySelectorAll('a-camera').forEach(cam => cam.setAttribute('camera', 'active', false));
+      document.getElementById(camId).setAttribute('camera', 'active', true);
+    }
+
+    // cambiar camaras con las flechas
+    document.addEventListener('keydown', function (event) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          cambiarCamara('camera1');
+          break;
+        case 'ArrowUp':
+          cambiarCamara('camera2');
+          break;
+        case 'ArrowRight':
+          cambiarCamara('camera3');
+          break;
+        case 'ArrowDown':
+          cambiarCamara('cam-moto');
+          break;
+      }
+    });
+
+    // Espera a que se cargue la página
     document.addEventListener("DOMContentLoaded", function () {
       animarMoto(coordenadas);
     });
